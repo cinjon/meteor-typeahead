@@ -28,7 +28,11 @@ Meteor.typeahead = function(element, source) {
 	});
 
 	if (Array.isArray(datasets)) {
-		$e.typeahead.apply($e, [options].concat(datasets));
+		$e.typeahead.apply($e, [options].concat(datasets)).on(
+                  'typeahead:selected', selected
+                ).on(
+                  'typeahead:autocompleted', autocompleted
+                );
 	} else {
 		$e.typeahead(options, datasets).on(
                   'typeahead:selected', selected
